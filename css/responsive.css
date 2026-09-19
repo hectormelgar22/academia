@@ -10,6 +10,13 @@
   .nav-toggle { margin-right: 0; }
 }
 
+/* ──────  Hasta 544 px · la marca prescinde de su subtítulo  ────────── */
+/* Con «MONTECARMELO» la marca mide 278 px; sumando el botón y el icono de
+   menú la cabecera necesita unos 460, que no hay por debajo de este ancho. */
+@media (max-width: 34rem) {
+  .brand__sub { display: none; }
+}
+
 /* ───────────────  320 – 374 px · móviles pequeños  ───────────────── */
 @media (max-width: 23.4375rem) {
   :root {
@@ -21,7 +28,6 @@
   }
 
   .brand { font-size: 1.15rem; }
-  .brand__sub { display: none; }
 
   .tool__head, .tool__body, .tool__foot, .tool__intro { padding-inline: var(--s-4); }
   .result__head, .result__body { padding: var(--s-4); }

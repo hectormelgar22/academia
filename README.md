@@ -59,32 +59,54 @@ npx serve .
 
 ---
 
-## 3. Cómo desplegarlo en Vercel
+## 3. Cómo desplegarlo
 
-El proyecto es estático puro, así que no hay configuración de build.
+El proyecto es estático puro: no hay build, ni dependencias, ni backend.
 
-**Desde la interfaz web:** importa el repositorio en Vercel, deja *Framework
-Preset* en **Other**, *Build Command* vacío y *Output Directory* en `.`.
+> **Regla que no se puede romper:** todas las rutas del sitio son **relativas**
+> (`css/main.css`, `../assets/images/...`), nunca absolutas (`/css/main.css`).
+> Es lo que permite que funcione igual en la raíz de un dominio y colgando de
+> un subdirectorio como `usuario.github.io/academia/`. Si alguna vez añades una
+> ruta que empiece por `/`, el sitio se queda sin estilos en GitHub Pages.
 
-**Desde la terminal:**
+### GitHub Pages
+
+En el repositorio: **Settings → Pages → Source: Deploy from a branch**, rama
+`main` y carpeta `/ (root)`. En un par de minutos queda publicado en
+`https://usuario.github.io/nombre-del-repo/`.
+
+El archivo `.nojekyll` incluido evita que GitHub procese el sitio con Jekyll,
+que por defecto se salta lo que empieza por guion bajo.
+
+### Vercel
+
+Importa el repositorio, deja *Framework Preset* en **Other**, *Build Command*
+vacío y *Output Directory* en `.`. O desde la terminal:
 
 ```bash
 npx vercel --prod
 ```
 
-El archivo `vercel.json` incluido ya activa URLs limpias (`/cursos` en lugar de
-`/cursos.html`), cabeceras de seguridad y caché larga para `assets/`.
+El `vercel.json` incluido trae cabeceras de seguridad y caché para `assets/`.
+Lleva `cleanUrls` en **false** a propósito: con las URL limpias, `/recursos/guia`
+haría que las rutas relativas de esa carpeta apuntasen un nivel de más.
 
-Después del despliegue, sustituye `https://nexoacademia.es` por el dominio real
-en:
+### Cualquier otro alojamiento
+
+Sube la carpeta tal cual por FTP. Funciona en cualquier servidor que sirva
+archivos estáticos, con o sin subdirectorio.
+
+### Después de publicar
+
+Sustituye `https://nexoacademia.es` por el dominio real en:
 
 - el `<link rel="canonical">` y las etiquetas `og:` de cada `.html`
-- los bloques `application/ld+json` de cada `.html`
-- `robots.txt`
-- `sitemap.xml`
+- los bloques `application/ld+json`
+- `robots.txt` y `sitemap.xml`
 - `ACADEMY.seo.baseUrl` en `js/content.js`
 
----
+Mientras siga apuntando al dominio de ejemplo, los buscadores recibirán un
+canonical que no existe. Para una demo da igual; para una web real, no.
 
 ## 4. Cómo cambiar los datos de la academia
 
@@ -224,8 +246,9 @@ y dispone de:
 Con eso aparece sola en el índice, en los relacionados de los demás artículos
 y en el bloque de la portada. Sólo queda añadir la URL al `sitemap.xml`.
 
-**Las guías usan rutas absolutas** (`/css/main.css`) porque están en una
-subcarpeta. Si mueves el sitio a un subdirectorio, hay que revisarlas.
+**Las guías usan rutas relativas con `../`** porque viven en una subcarpeta.
+No uses rutas que empiecen por `/`: romperían el sitio en GitHub Pages y en
+cualquier alojamiento en subdirectorio.
 
 ---
 
@@ -629,6 +652,10 @@ valores: `--paper`, `--navy`, `--blue` y `--amber`.
   el mensaje generado.
 - **Imágenes:** todas cargan, ninguna se repite dentro de la misma página, todas
   declaran medidas y todas se sirven en WebP con `srcset`.
+- **Tablas que se apilan en móvil.** La de precios y la comparativa de
+  modalidades pasan a fichas por debajo de 704 px: una rejilla de cinco
+  columnas no cabe en un teléfono, y obligar a desplazar en horizontal justo
+  en la página de precios es perder al visitante.
 - **Peso por página:** la portada son 21 peticiones y ~640 KB sin comprimir, más
   el vídeo (717 KB, que se descarga aparte y sólo cuando procede). Una guía de
   recursos son 9 peticiones y ~212 KB. El DOM está listo en menos de 120 ms.

@@ -453,6 +453,9 @@ const Render = (() => {
       el('th', { scope: 'row', style: 'text-transform:none;letter-spacing:0;font-size:var(--step--1);color:var(--tx);font-weight:500', text: level.name }),
       ...combinaciones.map((c) => el('td', {
         class: c.modalityId === 'grupo' && c.frequency === 2 ? 'is-strong' : '',
+        /* data-label es lo que se lee delante del dato cuando la tabla se
+           apila en móvil, donde una rejilla de cinco columnas no cabe. */
+        'data-label': `${NX.modalityName(c.modalityId)} · ${c.etiqueta}`,
         text: Pricing.estimate({ ...c, levelId: level.id }).text.replace(' €/mes', ' €')
       }))
     ]));
