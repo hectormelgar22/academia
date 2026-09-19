@@ -873,3 +873,63 @@ ACADEMY.gradeCalculator = {
   help: 'Los porcentajes salen de los criterios de evaluación de tu asignatura. Suelen estar en la programación del departamento o los tiene tu profesor.',
   note: 'Cálculo orientativo. Cada centro aplica sus propios criterios, y algunos exigen además una nota mínima en los exámenes para poder hacer media.'
 };
+
+/* ══════════════════════════  RECURSOS (BLOG)  ═══════════════════════════ */
+/* El índice, los enlaces relacionados y el teaser de la portada se generan
+   desde aquí. El texto de cada artículo vive en su propio HTML, que es más
+   cómodo de escribir y de corregir que una cadena dentro de un objeto. */
+
+ACADEMY.articles = [
+  {
+    slug: 'mi-hijo-estudia-pero-suspende',
+    title: 'Mi hijo estudia pero suspende: por dónde empezar',
+    excerpt: 'Cuando el esfuerzo no aparece en la nota, el problema casi nunca es la cantidad de horas. Estas son las cuatro causas que vemos, y cómo distinguirlas en casa.',
+    date: '2026-09-08',
+    dateText: '8 de septiembre de 2026',
+    minutes: 6,
+    tag: 'Para familias',
+    author: 'marta',
+    image: 'art-suspende',
+    imageAlt: 'Estudiante con la cabeza apoyada en la mano frente a sus apuntes',
+    tool: { label: 'Haz el diagnóstico', href: 'diagnostico.html' }
+  },
+  {
+    slug: 'estudiar-para-un-examen-en-una-semana',
+    title: 'Cómo estudiar para un examen en una semana',
+    excerpt: 'Siete días dan para bastante más de lo que parece, si se reparten bien. El reparto que usamos en la academia, día a día, y los tres errores que lo tiran todo abajo.',
+    date: '2026-09-02',
+    dateText: '2 de septiembre de 2026',
+    minutes: 7,
+    tag: 'Para alumnos',
+    author: 'javier',
+    image: 'art-examen',
+    imageAlt: 'Alumno concentrado leyendo sus apuntes sobre la mesa',
+    tool: { label: 'Montar mi plan de examen', href: 'herramientas.html#examen' }
+  },
+  {
+    slug: 'nota-de-acceso-pau-madrid',
+    title: 'Cómo se calcula la nota de acceso a la universidad',
+    excerpt: 'Bachillerato pesa el 60 %, la PAU el 40 %, y luego están las ponderaciones. Explicado con un ejemplo real y sin la jerga de las guías oficiales.',
+    date: '2026-08-26',
+    dateText: '26 de agosto de 2026',
+    minutes: 8,
+    tag: 'PAU',
+    author: 'carlos',
+    image: 'art-pau',
+    imageAlt: 'Aula universitaria con pupitres preparados para un examen',
+    tool: { label: 'Calcular qué nota necesito', href: 'herramientas.html#nota' }
+  },
+  {
+    slug: 'cuanto-cuesta-una-academia-en-madrid',
+    title: 'Cuánto cuesta una academia de refuerzo en Madrid',
+    excerpt: 'Precios reales de 2026 por modalidad, qué suele estar incluido y las cinco preguntas que conviene hacer antes de apuntar a nadie.',
+    date: '2026-08-19',
+    dateText: '19 de agosto de 2026',
+    minutes: 5,
+    tag: 'Para familias',
+    author: 'marta',
+    image: 'art-precio',
+    imageAlt: 'Agenda abierta sobre un escritorio de madera',
+    tool: { label: 'Ver nuestros precios', href: 'precios.html' }
+  }
+];

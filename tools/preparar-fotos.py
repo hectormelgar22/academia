@@ -34,6 +34,12 @@ FOTOS = {
 
     "apoyo":      ("photo-1589206946274-929e4da3996b", (4, 3),   [1200, 640], 0.45),
 
+    # Cabeceras de los artículos de la sección de recursos
+    "art-suspende": ("photo-1560543685-824b3c5e82ad", (16, 9), [1200, 640], 0.4),
+    "art-examen":   ("photo-1606295834251-36d654991797", (16, 9), [1200, 640], 0.42),
+    "art-pau":      ("photo-1541829070764-84a7d30dd3f3", (16, 9), [1200, 640], 0.45),
+    "art-precio":   ("photo-1435527173128-983b87201f4d", (16, 9), [1200, 640], 0.45),
+
     # Retratos del profesorado: personas trabajando, no fotos de estudio.
     # Mismo orden que ACADEMY.teachers.
     "profe-marta":  ("photo-1581065178047-8ee15951ede6", (4, 5), [800, 420], 0.18),

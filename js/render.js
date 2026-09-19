@@ -471,11 +471,60 @@ const Render = (() => {
     ])));
   }
 
+
+  /* ─────────────────────────────  RECURSOS  ──────────────────────────── */
+  /* base permite que estos bloques funcionen igual en la raíz y dentro de
+     la carpeta /recursos, donde las rutas relativas cambian. */
+  function articleCard(article, base, { grande = false, ansioso = false } = {}) {
+    const autor = ACADEMY.teachers.find((t) => t.id === article.author);
+
+    return el('a', {
+      class: `acard${grande ? ' acard--lead' : ''}`,
+      href: `${base}recursos/${article.slug}.html`
+    }, [
+      el('div', { class: 'shot' }, [
+        el('img', {
+          src: `${base}assets/images/${article.image}.webp`,
+          srcset: `${base}assets/images/${article.image}-640.webp 640w, ${base}assets/images/${article.image}.webp 1200w`,
+          sizes: grande ? '(min-width: 58rem) 38rem, 92vw' : '(min-width: 58rem) 22rem, 92vw',
+          width: 1200, height: 675,
+          alt: article.imageAlt,
+          loading: ansioso ? 'eager' : 'lazy',
+          decoding: 'async'
+        })
+      ]),
+      el('div', { class: 'acard__body' }, [
+        el('p', { class: 'acard__meta' }, [
+          el('span', { class: 'tag', text: article.tag }),
+          el('span', { text: `${article.minutes} min de lectura` })
+        ]),
+        el('h3', { class: 'acard__title', text: article.title }),
+        el('p', { class: 'acard__excerpt', text: article.excerpt }),
+        autor ? el('p', { class: 'acard__author', text: `${autor.name} · ${article.dateText}` }) : null
+      ])
+    ]);
+  }
+
+  function articleList(node) {
+    const base = node.dataset.base || '';
+    const limite = Number(node.dataset.limit) || ACADEMY.articles.length;
+    const excluir = node.dataset.exclude || '';
+    const destacar = node.dataset.lead === 'true';
+
+    const items = ACADEMY.articles
+      .filter((a) => a.slug !== excluir)
+      .slice(0, limite);
+
+    node.replaceChildren(...items.map((a, i) =>
+      articleCard(a, base, { grande: destacar && i === 0, ansioso: i === 0 })));
+  }
+
   /* ────────────────────────────  ARRANQUE  ─────────────────────────── */
   const RENDERERS = {
     symptoms, method, programs, teachers, testimonials, faqs,
     'program-cards': programCards,
     'tool-cards': toolCards,
+    'article-list': articleList,
     'price-table': priceTable,
     'price-terms': priceTerms,
     'tool-index': toolIndex

@@ -17,7 +17,7 @@ terminan generando un mensaje de WhatsApp ya escrito y cualificado.
 |---|---|
 | **Negocio** | NEXO Academia (ficticia), Calle Monasterio de Arlanza 12, Montecarmelo, Madrid |
 | **Stack** | HTML5 + CSS3 + JavaScript vanilla. Sin frameworks, sin build, sin backend |
-| **Páginas** | Inicio, Cursos, Precios, Metodología, Profesores, Herramientas, Diagnóstico, Contacto, Privacidad y 404 |
+| **Páginas** | Inicio, Cursos, Precios, Metodología, Profesores, Herramientas, Diagnóstico, Recursos (4 guías), Contacto, Privacidad y 404 |
 | **Conversión principal** | Solicitar valoración inicial gratuita |
 | **Conversión secundaria** | WhatsApp con mensaje contextual |
 | **Tercera** | Usar una herramienta y enviar el resultado |
@@ -185,6 +185,47 @@ faqs: [ { q: '¿Cuánto cuesta el refuerzo al mes?', a: '...' } ]
 > `FAQPage` de datos estructurados está escrito a mano en `contacto.html`.
 > Si cambias las preguntas, actualiza también ese bloque para que buscadores y
 > página digan lo mismo.
+
+---
+
+## 4 bis. Cómo publicar una guía nueva
+
+La sección de recursos es el motor de captación a medio plazo: cada guía
+responde a una búsqueda real y termina en la herramienta que la resuelve.
+Publicar una nueva son dos pasos.
+
+**1. Copia un artículo existente** de `recursos/` y cambia el texto. Cada uno es
+un HTML independiente, con su `<title>`, su descripción y su bloque `Article`
+de datos estructurados al principio. Dentro, el texto vive en `<div class="prose">`
+y dispone de:
+
+- `<h2>` y `<h3>` para los apartados
+- `<ul>` y `<ol>`, que ya llevan sus viñetas y su numeración de la casa
+- `<blockquote>` para la frase destacada
+- `<div class="toolbox">` para la caja que lleva a la herramienta
+
+**2. Añade la ficha a `ACADEMY.articles`** en `content.js`:
+
+```js
+{
+  slug: 'como-se-llama-el-archivo-sin-html',
+  title: 'Título tal y como aparece en el índice',
+  excerpt: 'Dos líneas que se leen en la tarjeta.',
+  date: '2026-10-14',            // para los datos estructurados
+  dateText: '14 de octubre de 2026',
+  minutes: 6,                     // tiempo de lectura
+  tag: 'Para familias',           // Para familias · Para alumnos · PAU
+  author: 'marta',                // id de ACADEMY.teachers
+  image: 'art-loquesea',          // nombre en assets/images, sin extensión
+  imageAlt: 'Descripción de la foto'
+}
+```
+
+Con eso aparece sola en el índice, en los relacionados de los demás artículos
+y en el bloque de la portada. Sólo queda añadir la URL al `sitemap.xml`.
+
+**Las guías usan rutas absolutas** (`/css/main.css`) porque están en una
+subcarpeta. Si mueves el sitio a un subdirectorio, hay que revisarlas.
 
 ---
 
@@ -465,6 +506,10 @@ pero son los pasos naturales si el negocio crece:
 ├── privacidad.html         Qué datos se guardan y dónde
 ├── 404.html                Página de error con accesos rápidos
 │
+├── recursos/
+│   ├── index.html          Índice del blog
+│   └── *.html              Una guía por archivo
+│
 ├── css/
 │   ├── main.css            Tokens, tipografía, layout y secciones
 │   ├── components.css      Botones, campos, herramientas, resultados, estados
@@ -540,6 +585,10 @@ valores: `--paper`, `--navy`, `--blue` y `--amber`.
   El ámbar de relleno (`--amber`) no llega a AA como texto, así que para texto
   existe `--amber-ink`; la distinción está marcada en los tokens. Lo mismo pasa
   con el rojo de corrección: `--red` rellena, `--red-deep` escribe.
+- **La sección de recursos existe por SEO, no por adorno.** Una academia local
+  compite por «cómo estudiar para un examen en una semana» o «cómo se calcula la
+  nota de acceso»: búsquedas que hace el alumno y que acaban enseñándose en casa.
+  Cada guía termina en la herramienta que resuelve ese problema concreto.
 - **Los precios están publicados en su propia página.** La tabla se calcula con
   el mismo motor que la calculadora, así que no pueden contradecirse: si cambias
   una tarifa en `content.js`, cambian las dos a la vez.

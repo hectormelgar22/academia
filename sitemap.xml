@@ -31,6 +31,31 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://nexoacademia.es/recursos/index.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://nexoacademia.es/recursos/mi-hijo-estudia-pero-suspende.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexoacademia.es/recursos/estudiar-para-un-examen-en-una-semana.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexoacademia.es/recursos/nota-de-acceso-pau-madrid.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://nexoacademia.es/recursos/cuanto-cuesta-una-academia-en-madrid.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://nexoacademia.es/metodologia.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
