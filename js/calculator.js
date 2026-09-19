@@ -110,7 +110,7 @@ const Pricing = (() => {
   const bar = el('div', { class: 'weights' }, [
     el('div', { class: 'weights__track', 'data-weights': '', role: 'img', 'aria-label': 'Reparto de la nota' }),
     el('div', { class: 'gradebar__legend' }, [
-      legend('var(--green)', 'Ya evaluado'),
+      legend('var(--blue)', 'Ya evaluado'),
       legend('var(--amber)', 'Pendiente')
     ])
   ]);

@@ -138,7 +138,7 @@ teachers: [
     subjects: ['Matemáticas ESO', 'Matemáticas Bachillerato'],
     bio: 'Una frase humana y concreta, no una bio corporativa.',
     initials: 'MI',            // aparecen en el retrato
-    accent: 'verde'            // verde · tinta · rojo
+    accent: 'azul'             // azul · tinta · rojo (sólo si no hay foto)
   }
 ]
 ```
@@ -478,7 +478,7 @@ colarse sobre tinta.
 ```
 
 Para cambiar la identidad cromática de toda la web basta con tocar cuatro
-valores: `--paper`, `--ink`, `--green` y `--red`.
+valores: `--paper`, `--navy`, `--blue` y `--amber`.
 
 ---
 
@@ -501,11 +501,16 @@ valores: `--paper`, `--ink`, `--green` y `--red`.
   con `preconnect` y `font-display: swap`. Para eliminar la dependencia externa,
   descarga los `.woff2`, colócalos en `assets/fonts/` y declara `@font-face` en
   `main.css`.
-- **Color:** papel crema, verde bosque como superficie oscura de marca (en vez de
-  un negro plano, que enfriaba la página) y un **ámbar** que aporta el color
-  visible: cifras, subrayados, estrellas, plazas y barras de progreso. El ámbar
-  de relleno (`--amber`) no llega a AA como texto, así que para texto existe
-  `--amber-ink`; la distinción está marcada en los tokens.
+- **Color:** papel crema, **azul marino** como superficie oscura de marca y un
+  **ámbar** que aporta el color visible: cifras, subrayados, estrellas, plazas y
+  barras de progreso. Azul y ámbar es el par clásico de la tradición académica,
+  y el azul es además el color que mejor se lee como «enseñanza».
+  El ámbar de relleno (`--amber`) no llega a AA como texto, así que para texto
+  existe `--amber-ink`; la distinción está marcada en los tokens. Lo mismo pasa
+  con el rojo de corrección: `--red` rellena, `--red-deep` escribe.
+- **La ficha lateral sólo es `sticky` en escritorio.** Cuando no lo era, viajaba
+  por encima del planificador y lo tapaba; el planificador vive ahora en su
+  propia sección, fuera de la rejilla, para que eso no pueda repetirse.
 - **La calculadora de nota trabaja por criterios de evaluación**, no sólo por
   exámenes: en la ESO y en Bachillerato casi nunca puntúa únicamente el examen,
   y una herramienta que lo ignorase daría cifras falsas.

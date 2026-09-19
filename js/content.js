@@ -193,7 +193,7 @@ const ACADEMY = {
       subjects: ['Matemáticas ESO', 'Matemáticas Bachillerato'],
       bio: 'Abrió NEXO en 2011 después de nueve años en un instituto público. Hace la primera valoración de casi todos los alumnos: dice que en veinte minutos sabe si el problema es de base, de método o de nervios.',
       initials: 'MI',
-      accent: 'verde'
+      accent: 'azul'
     },
     {
       id: 'carlos',
@@ -229,7 +229,7 @@ const ACADEMY = {
       subjects: ['Inglés escolar', 'Cambridge', 'Speaking'],
       bio: 'Examinador acreditado de Cambridge. Se le reconoce porque no deja hablar en español en clase ni el primer día: los alumnos protestan dos semanas y después dejan de notarlo.',
       initials: 'DF',
-      accent: 'verde'
+      accent: 'azul'
     },
     {
       id: 'nuria',

@@ -26,15 +26,15 @@ NOTAS = [3.5, 4.0, 5.5, 6.5, 7.5]
 MESES = ["Sep", "Oct", "Nov", "Dic", "Ene"]
 
 # ──────────────────────────────  PALETA  ───────────────────────────────
-PAPEL = (250, 247, 242)
-PAPEL2 = (242, 236, 225)
-TINTA = (20, 22, 26)
-TINTA2 = (58, 63, 70)
-TINTA3 = (107, 112, 120)
-VERDE = (20, 88, 74)
-VERDE_SUAVE = (227, 237, 233)
-ROJO = (194, 65, 12)
-FILETE = (221, 215, 205)
+PAPEL = (251, 248, 242)
+PAPEL2 = (244, 236, 223)
+TINTA = (23, 28, 38)
+TINTA2 = (61, 69, 81)
+TINTA3 = (99, 107, 120)
+AZUL = (21, 80, 127)
+AZUL_SUAVE = (227, 236, 245)
+ROJO = (206, 75, 33)
+FILETE = (221, 214, 203)
 
 W, H = 1200, 630
 MARGEN = 80
@@ -58,7 +58,7 @@ for y in range(196, 492, 40):
     d.line([(0, y), (W, y)], fill=FILETE, width=1)
 
 # ──────────────────────────────  MARCA  ────────────────────────────────
-d.text((MARGEN, 58), MARCA_1, font=f_marca, fill=VERDE)
+d.text((MARGEN, 58), MARCA_1, font=f_marca, fill=AZUL)
 d.text((MARGEN + d.textlength(MARCA_1, font=f_marca), 58), MARCA_2, font=f_marca, fill=TINTA)
 d.line([(MARGEN, 114), (W - MARGEN, 114)], fill=FILETE, width=2)
 
@@ -68,7 +68,7 @@ for linea in TITULO:
     x = MARGEN
     for texto, estilo in linea:
         fuente = f_titulo_it if estilo == "italic" else f_titulo
-        color = VERDE if estilo == "italic" else TINTA
+        color = AZUL if estilo == "italic" else TINTA
         d.text((x, y), texto, font=fuente, fill=color)
         x += d.textlength(texto, font=fuente)
     y += 80
@@ -95,8 +95,8 @@ for i, nota in enumerate(NOTAS):
     alto = int(alto_max * nota / 10)
     x0 = int(zona_x0 + i * (barra_w + hueco))
     y0 = base_y - alto
-    relleno = VERDE if i == len(NOTAS) - 1 else VERDE_SUAVE
-    d.rectangle([x0, y0, x0 + barra_w, base_y], fill=relleno, outline=VERDE)
+    relleno = AZUL if i == len(NOTAS) - 1 else AZUL_SUAVE
+    d.rectangle([x0, y0, x0 + barra_w, base_y], fill=relleno, outline=AZUL)
 
     etiqueta = f"{nota:.1f}".replace(".", ",")
     ancho = d.textlength(etiqueta, font=f_dato)
@@ -108,7 +108,7 @@ for i, nota in enumerate(NOTAS):
 d.line([(zona_x0 - 10, base_y + 1), (zona_x1 + 10, base_y + 1)], fill=TINTA, width=2)
 
 # Filete inferior de cierre
-d.rectangle([0, H - 10, W, H], fill=VERDE)
+d.rectangle([0, H - 10, W, H], fill=AZUL)
 
 salida = Path(__file__).resolve().parent.parent / "assets" / "images" / "og-nexo.png"
 salida.parent.mkdir(parents=True, exist_ok=True)

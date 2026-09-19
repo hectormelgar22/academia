@@ -174,7 +174,7 @@ const Render = (() => {
   }
 
   /* ──────────────────────────  PROFESORADO  ────────────────────────── */
-  const ACCENT = { verde: '#14584a', tinta: '#14161a', rojo: '#c2410c' };
+  const ACCENT = { azul: '#15507f', tinta: '#171c26', rojo: '#ce4b21' };
 
   /**
    * Retrato de plancha: silueta a línea, trama de puntos y una segunda
@@ -182,7 +182,7 @@ const Render = (() => {
    * recibe una geometría distinta para que los seis no parezcan clones.
    */
   function portrait(teacher, index) {
-    const accent = ACCENT[teacher.accent] || ACCENT.verde;
+    const accent = ACCENT[teacher.accent] || ACCENT.azul;
     const uid = `p-${teacher.id}`;
     const head = 70 + (index % 3) * 6;               // 70 · 76 · 82
     const shoulder = 128 + ((index + 1) % 3) * 16;   // ancho de hombros
@@ -201,7 +201,7 @@ const Render = (() => {
       <circle cx="4.5" cy="4.5" r="${dot}" fill="${accent}" opacity=".55"/>
     </pattern>
     <pattern id="${uid}-rules" width="400" height="25" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="24.5" x2="400" y2="24.5" stroke="#14161a" stroke-width="1" opacity=".07"/>
+      <line x1="0" y1="24.5" x2="400" y2="24.5" stroke="#171c26" stroke-width="1" opacity=".07"/>
     </pattern>
     <clipPath id="${uid}-clip">
       <circle cx="200" cy="${cy}" r="${head}"/>
@@ -209,7 +209,7 @@ const Render = (() => {
     </clipPath>
   </defs>
 
-  <rect width="400" height="500" fill="#f2ece1"/>
+  <rect width="400" height="500" fill="#f4ecdf"/>
   <rect width="400" height="500" fill="url(#${uid}-rules)"/>
 
   <g transform="rotate(${tilt} 200 300)">
@@ -220,14 +220,14 @@ const Render = (() => {
     <g clip-path="url(#${uid}-clip)">
       <rect width="400" height="500" fill="url(#${uid}-dots)"/>
     </g>
-    <g fill="none" stroke="#14161a" stroke-width="1.5">
+    <g fill="none" stroke="#171c26" stroke-width="1.5">
       <circle cx="200" cy="${cy}" r="${head}"/>
       <path d="${silhouette}"/>
     </g>
   </g>
 
-  <line x1="0" y1="428" x2="400" y2="428" stroke="#14161a" stroke-width="1.5"/>
-  <text x="26" y="478" fill="#14161a" font-family="Fraunces, Georgia, serif" font-size="46" font-weight="600" letter-spacing="-1">${esc(teacher.initials)}</text>
+  <line x1="0" y1="428" x2="400" y2="428" stroke="#171c26" stroke-width="1.5"/>
+  <text x="26" y="478" fill="#171c26" font-family="Fraunces, Georgia, serif" font-size="46" font-weight="600" letter-spacing="-1">${esc(teacher.initials)}</text>
   <text x="374" y="474" fill="${accent}" text-anchor="end" font-family="Archivo, system-ui, sans-serif" font-size="14" font-weight="600" letter-spacing="1.4">${teacher.years} AÑOS</text>
 </svg>`;
   }

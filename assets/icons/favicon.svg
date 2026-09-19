@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="NEXO Academia">
-  <rect width="32" height="32" rx="6" fill="#14584a"/>
+  <rect width="32" height="32" rx="6" fill="#14314f"/>
   <!-- Monograma N dibujado con geometría: no depende de ninguna tipografía. -->
-  <g fill="#faf7f2">
+  <g fill="#fbf8f2">
     <rect x="8" y="7" width="3.4" height="15"/>
     <rect x="20.6" y="7" width="3.4" height="15"/>
     <path d="M11.4 7h2.9l6.3 15h-2.9z"/>
   </g>
-  <rect x="8" y="24.4" width="16" height="1.6" fill="#7fc8b1"/>
+  <rect x="8" y="24.4" width="16" height="1.6" fill="#e0912b"/>
 </svg>

@@ -159,10 +159,10 @@
 /* ────────────────────  Contraste alto del sistema  ───────────────── */
 @media (prefers-contrast: more) {
   :root {
-    --tx-2: #23272d;
-    --tx-3: #44484f;
-    --rule: rgba(20, 22, 26, .3);
-    --rule-strong: rgba(20, 22, 26, .55);
+    --tx-2: #232833;
+    --tx-3: #444b57;
+    --rule: rgba(23, 28, 38, .3);
+    --rule-strong: rgba(23, 28, 38, .55);
     --tx-2-on-ink: #d3d7dd;
     --rule-on-ink: rgba(250, 247, 242, .4);
   }
