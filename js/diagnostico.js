@@ -149,7 +149,7 @@
     if (current <= 4) add({ base: 2 });
     if (gap >= 3) add({ base: 1, intensivo: 1 });
     if (gap <= 1 && current >= 6) add({ examen: 1 });
-    if (state.level === 'ebau') add({ intensivo: 1, examen: 1 });
+    if (state.level === 'pau') add({ intensivo: 1, examen: 1 });
     if (state.level === 'primaria') add({ base: 1 });
 
     const best = D.order.reduce((winner, id) =>

@@ -8,3 +8,7 @@ Thumbs.db
 # Python de los scripts de assets
 __pycache__/
 *.pyc
+
+# Vídeo original en 4K: pesa 16 MB y sólo hace falta para regenerar
+# las versiones web con tools/preparar-video.py
+assets/video/original/

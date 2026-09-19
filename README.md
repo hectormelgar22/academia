@@ -152,7 +152,7 @@ recalcula sola. Los retratos se generan por código (ver punto 8).
 programs: [
   {
     id: 'eso',                 // genera el ancla #programa-eso
-    level: 'eso',              // primaria · eso · bachillerato · ebau
+    level: 'eso',              // primaria · eso · bachillerato · pau
     name: 'ESO',
     ages: '12 a 16 años',
     lead: 'Titular corto y con opinión.',
@@ -296,7 +296,7 @@ pricing: {
     { id: 'individual', name: 'Clase individual', hourly: 27,   note: '...' },
     { id: 'online',     name: 'Online en directo', hourly: 10.5, note: '...' }
   ],
-  levelFactor: { primaria: 0.92, eso: 1, bachillerato: 1.12, ebau: 1.2 },
+  levelFactor: { primaria: 0.92, eso: 1, bachillerato: 1.12, pau: 1.2 },
   discounts: [ { label: 'Segundo hermano', value: '−10 %' } ],
   disclaimer: 'Precio orientativo...'
 }
@@ -360,6 +360,34 @@ El script descarga, recorta al punto de interés de cada foto, aplica la
 gradación y exporta los dos tamaños en WebP. Para cambiar una foto, sustituye su
 identificador en el diccionario `FOTOS`. Con `python tools/preparar-fotos.py profe`
 sólo se rehacen los retratos.
+
+### El vídeo de la portada
+
+La portada abre con un vídeo de un aula real a pantalla completa. Está
+preparado para que no penalice:
+
+| | |
+|---|---|
+| **Peso** | 717 KB (1600 px) y 284 KB (960 px, para móvil) |
+| **Audio** | Ninguno: se elimina en la codificación |
+| **Póster** | `hero-poster.webp`, 28 KB, visible al instante |
+| **Cuándo no se descarga** | Con `prefers-reduced-motion`, con ahorro de datos activado o en 2G: se queda el póster |
+| **Control** | Botón de pausa abajo a la derecha, exigido por la WCAG para contenido en movimiento |
+
+El degradado que lo oscurece **no es decoración**: está calibrado midiendo el
+0,5 % de píxeles más claros de los once segundos de metraje, para que el texto
+blanco mantenga 5,4:1 sobre el peor fotograma. Si cambias el vídeo, vuelve a
+comprobarlo antes de dar por buena la portada.
+
+Para cambiarlo, deja tu vídeo donde estaba el original y ejecuta:
+
+```bash
+pip install imageio-ffmpeg Pillow
+python tools/preparar-video.py ruta/a/tu-video.mp4
+```
+
+El original en 4K está en `.gitignore`: no se publica, porque sólo hace falta
+para regenerar las versiones web.
 
 ### Otros elementos gráficos
 
@@ -451,11 +479,13 @@ pero son los pasos naturales si el negocio crece:
 │   └── tools.js            Plan de examen, modalidad, plazas y solicitud
 │
 ├── assets/
-│   ├── images/og-nexo.png  Imagen de compartición 1200×630
+│   ├── images/             Fotografía en WebP, póster y og-nexo.png
+│   ├── video/              hero.mp4 y hero-960.mp4 (el 4K original no se publica)
 │   └── icons/favicon.svg
 │
 ├── tools/
 │   ├── preparar-fotos.py   Descarga, recorta y exporta la fotografía (opcional)
+│   ├── preparar-video.py   Codifica el vídeo de portada y su póster (opcional)
 │   └── generar-og.py       Regenera la imagen de compartición (opcional)
 ├── vercel.json             URLs limpias, cabeceras y caché
 ├── robots.txt
@@ -508,6 +538,9 @@ valores: `--paper`, `--navy`, `--blue` y `--amber`.
   El ámbar de relleno (`--amber`) no llega a AA como texto, así que para texto
   existe `--amber-ink`; la distinción está marcada en los tokens. Lo mismo pasa
   con el rojo de corrección: `--red` rellena, `--red-deep` escribe.
+- **La portada es un vídeo, no una foto.** Abre con un aula real a pantalla
+  completa, con la cabecera en cristal encima y la tipografía centrada. El vídeo
+  aporta toda la profundidad: no hay manchas de color ni adornos superpuestos.
 - **La ficha lateral sólo es `sticky` en escritorio.** Cuando no lo era, viajaba
   por encima del planificador y lo tapaba; el planificador vive ahora en su
   propia sección, fuera de la rejilla, para que eso no pueda repetirse.

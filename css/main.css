@@ -110,6 +110,8 @@ body {
 }
 
 img, svg, video { display: block; max-width: 100%; height: auto; }
+/* El reset anterior pisa el display:none que el navegador da a [hidden]. */
+[hidden] { display: none !important; }
 input, button, textarea, select { font: inherit; color: inherit; }
 button { background: none; border: 0; }
 ul, ol { padding: 0; list-style: none; }
@@ -478,31 +480,7 @@ strong, b { font-weight: 600; }
 }
 .footer-bottom a { color: var(--tx-2-on-ink); }
 
-/* ───────────────────────────────  HERO  ───────────────────────────── */
-.hero {
-  position: relative;
-  padding-block: clamp(2.5rem, 1rem + 7vw, 6rem) clamp(3rem, 1.5rem + 6vw, 5.5rem);
-  overflow: hidden;
-}
-
-/* Pauta de cuaderno: casi imperceptible, sólo da materia al papel */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0 39px,
-    var(--rule) 39px 40px
-  );
-  opacity: .3;
-  mask-image: linear-gradient(to bottom, #000 0%, #000 26%, transparent 58%);
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 26%, transparent 58%);
-  pointer-events: none;
-}
-
-.hero > * { position: relative; }
-
+/* ─────────────  REJILLA HEREDADA DEL HERO (metodología)  ────────────── */
 .hero__grid { display: grid; gap: clamp(2rem, 1rem + 4vw, 3.5rem); }
 
 @media (min-width: 64rem) {
@@ -513,57 +491,10 @@ strong, b { font-weight: 600; }
   }
 }
 
-.hero__title {
-  font-size: var(--step-6);
-  line-height: .97;
-  letter-spacing: -.035em;
-  max-width: 13ch;
-}
-.hero__title em {
-  font-style: italic;
-  color: var(--blue);
-}
-
-.hero__lead { margin-top: var(--s-5); max-width: 40ch; }
-
-.hero__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-3);
-  margin-top: var(--s-6);
-}
-
-.hero__proof {
-  margin-top: var(--s-6);
-  padding-top: var(--s-5);
-  border-top: 1px solid var(--rule);
-  font-size: var(--step--1);
-  color: var(--tx-2);
-  max-width: 40ch;
-}
-.hero__proof .stars { margin-right: .5rem; transform: translateY(2px); }
-.hero__proof b {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 600;
-  color: var(--tx);
-  font-variant-numeric: tabular-nums;
-}
-
 .stars { display: inline-flex; gap: 2px; color: var(--amber); vertical-align: middle; }
 .stars svg { width: 16px; height: 16px; }
 
-.proof-item { font-size: var(--step--1); color: var(--tx-2); }
-.proof-item b {
-  font-family: var(--font-display);
-  font-size: var(--step-1);
-  font-weight: 600;
-  color: var(--tx);
-  font-variant-numeric: tabular-nums;
-  margin-right: .25em;
-}
-
-/* ───────────────────────  FICHA DE PORTADA (hero art)  ───────────── */
+/* Ficha de seguimiento: sigue viva en la página de metodología. */
 .hero__card {
   background: var(--paper);
   border: 1px solid var(--rule-strong);
@@ -895,3 +826,167 @@ strong, b { font-weight: 600; }
 .mt-6 { margin-top: var(--s-6); }
 .mt-7 { margin-top: var(--s-7); }
 .no-measure { max-width: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PORTADA CINEMATOGRÁFICA
+   Vídeo de un aula real a pantalla completa. El degradado no es adorno:
+   garantiza el contraste del texto y funde el vídeo con el papel de la
+   sección siguiente.
+   ═══════════════════════════════════════════════════════════════════════ */
+.hero-cine {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-content: center;
+  min-height: 92svh;
+  /* Se mete bajo la cabecera para que el vídeo llegue al borde superior. */
+  margin-top: calc(var(--header-h) * -1);
+  padding-top: calc(var(--header-h) + clamp(3rem, 2rem + 5vw, 6rem));
+  padding-bottom: clamp(4rem, 3rem + 6vw, 8rem);
+  background: var(--navy-2) center / cover no-repeat;
+  overflow: hidden;
+}
+
+@supports not (min-height: 92svh) {
+  .hero-cine { min-height: 92vh; }
+}
+
+.hero-cine__media,
+.hero-cine__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+}
+.hero-cine__media {
+  background: var(--navy-2) center / cover no-repeat;
+  background-image: image-set(url('../assets/images/hero-poster.webp') 1x);
+}
+.hero-cine__video { object-fit: cover; opacity: 0; transition: opacity 900ms var(--ease-out); }
+.hero-cine__video[data-playing='true'] { opacity: 1; }
+
+.hero-cine__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(11, 27, 45, .84) 0%,
+      rgba(11, 27, 45, .58) 24%,
+      rgba(11, 27, 45, .58) 72%,
+      rgba(11, 27, 45, .9) 90%,
+      var(--paper) 100%);
+}
+
+.hero-cine__inner {
+  display: grid;
+  text-align: center;
+  gap: var(--s-5);
+}
+/* Cada bloque ocupa el ancho disponible y su max-width sólo lo limita:
+   con justify-items:center el ancho era el max-width y se salía en móvil. */
+.hero-cine__inner > * { margin-inline: auto; }
+
+.hero-cine__title {
+  font-size: clamp(2.6rem, 1.4rem + 5.4vw, 5.6rem);
+  line-height: .98;
+  letter-spacing: -.035em;
+  color: var(--paper);
+  max-width: 17ch;
+  margin: 0;
+}
+.hero-cine__title em {
+  font-style: italic;
+  color: var(--amber-lift);
+}
+
+.hero-cine__lead {
+  font-size: var(--step-1);
+  line-height: 1.5;
+  color: rgba(251, 248, 242, .82);
+  max-width: 48ch;
+}
+
+.hero-cine__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  margin-top: var(--s-2);
+}
+
+.hero-cine__proof {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem .6rem;
+  font-size: var(--step--1);
+  color: rgba(251, 248, 242, .78);
+  margin-top: var(--s-4);
+}
+.hero-cine__proof b { color: var(--paper); font-weight: 600; font-variant-numeric: tabular-nums; }
+.hero-cine__proof .stars { color: var(--amber-lift); }
+
+/* Control de pausa: un vídeo que se mueve solo necesita poder pararse. */
+.hero-cine .hero-cine__toggle {
+  position: absolute;
+  right: clamp(1rem, 4vw, 2.5rem);
+  bottom: clamp(1rem, 4vw, 2.5rem);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  color: var(--paper);
+  cursor: pointer;
+}
+.hero-cine__toggle svg { width: 16px; height: 16px; }
+.hero-cine__toggle[hidden] { display: none; }
+
+/* ─────────────────────  ENTRADA ESCALONADA  ─────────────────────────── */
+@keyframes fade-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero-cine__inner > * { animation: fade-rise 800ms var(--ease-out) both; }
+.hero-cine__inner > :nth-child(2) { animation-delay: 120ms; }
+.hero-cine__inner > :nth-child(3) { animation-delay: 240ms; }
+.hero-cine__inner > :nth-child(4) { animation-delay: 360ms; }
+
+/* ────────────────  CABECERA SOBRE EL VÍDEO  ─────────────────────────── */
+.site-header[data-over='true'] {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border-bottom-color: transparent;
+  --tx:   #fbf8f2;
+  --tx-2: rgba(251, 248, 242, .78);
+  --tx-3: rgba(251, 248, 242, .62);
+  color: var(--paper);
+}
+.site-header[data-over='true'] .brand__mark { color: var(--amber-lift); }
+.site-header[data-over='true'] .nav__link::after { background: var(--amber-lift); }
+.site-header[data-over='true'] .btn--sm {
+  --btn-bg: rgba(251, 248, 242, .1);
+  --btn-fg: #fbf8f2;
+  --btn-bd: rgba(251, 248, 242, .34);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: var(--r-pill);
+}
+@media (hover: hover) and (pointer: fine) {
+  .site-header[data-over='true'] .btn--sm:hover {
+    --btn-bg: var(--amber); --btn-fg: #241505; --btn-bd: var(--amber);
+  }
+}
+.site-header[data-over='true'] :focus-visible { outline-color: var(--paper); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-cine__inner > * { animation: none; }
+  .hero-cine__video { transition: none; }
+}

@@ -20,9 +20,6 @@
     --s-10: 5.5rem;
   }
 
-  .hero__title { font-size: clamp(2.35rem, 2rem + 4vw, 2.9rem); max-width: 11ch; }
-  .hero__proof { gap: .5rem var(--s-4); }
-
   .brand { font-size: 1.15rem; }
   .brand__sub { display: none; }
 
@@ -43,12 +40,12 @@
 
 /* ─────────  Hasta 480 px · las llamadas a la acción, a ancho completo  ───── */
 @media (max-width: 30rem) {
-  .hero__actions,
   .closer__actions,
   .result__actions { display: grid; grid-template-columns: 1fr; }
-  .hero__actions .btn,
   .closer__actions .btn,
   .result__actions .btn { width: 100%; }
+  .hero-cine__actions { display: grid; grid-template-columns: 1fr; width: 100%; }
+  .hero-cine__actions .btn-cine { width: 100%; }
 }
 
 /* ──────────────  375 – 429 px · móvil estándar  ──────────────────── */
@@ -64,7 +61,6 @@
 
 /* ─────────────────  640 px · dos columnas ligeras  ───────────────── */
 @media (min-width: 40rem) {
-  .hero__proof { gap: var(--s-3) var(--s-6); }
   .step-panel__title { font-size: var(--step-3); }
   .tool__body { padding: var(--s-6); }
   .tool__head, .tool__foot { padding-inline: var(--s-6); }
@@ -88,8 +84,6 @@
 /* ───────────────  1024 px · tablet apaisada y portátil  ──────────── */
 @media (min-width: 64rem) {
   :root { --header-h: 68px; }
-
-  .hero { padding-block: clamp(3rem, 1rem + 5vw, 5.5rem) clamp(3.5rem, 1.5rem + 5vw, 6rem); }
 
   /* La ficha del alumno acompaña al scroll sólo cuando hay sitio real */
   .tools-layout {
@@ -116,7 +110,6 @@
     --wrap:      min(100% - 5rem, 1240px);
     --wrap-wide: min(100% - 5rem, 1480px);
   }
-  .hero__title { max-width: 12ch; }
   .s-head { padding-top: var(--s-6); }
 }
 
@@ -138,13 +131,12 @@
     --wrap-wide: min(100% - 10rem, 1680px);
     --step-0:    1.125rem;
   }
-  .hero__title { font-size: 5.6rem; }
+  .hero-cine__title { font-size: 6rem; }
 }
 
 /* ───────────────  Pantallas bajas: menos aire vertical  ─────────── */
 @media (max-height: 34rem) and (orientation: landscape) {
-  .hero { padding-block: var(--s-6); }
-  .hero::before { display: none; }
+  .hero-cine { min-height: 34rem; padding-block: calc(var(--header-h) + var(--s-6)) var(--s-7); }
   .mobile-nav { padding-block: var(--s-4); }
   .mobile-nav__link { padding: .7rem 0; font-size: var(--step-1); }
 }

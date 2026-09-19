@@ -15,11 +15,20 @@
     const panel = $('.mobile-nav');
     if (!toggle || !panel) return;
 
+    const header = $('.site-header');
+
     const setOpen = (open) => {
       toggle.setAttribute('aria-expanded', String(open));
       panel.dataset.open = String(open);
       document.body.style.overflow = open ? 'hidden' : '';
       toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+
+      /* Con el menú abierto el fondo es papel: la cabecera no puede seguir
+         en su versión clara sobre vídeo o se volvería ilegible. */
+      if (header) {
+        header.dataset.menuOpen = String(open);
+        if (open) header.dataset.over = 'false';
+      }
     };
 
     toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
@@ -78,7 +87,7 @@
     const bar = $('.sticky-cta');
     if (!bar) return;
 
-    const sentinel = $('.hero') || $('.page-head');
+    const sentinel = $('.hero-cine') || $('.page-head');
     if (!sentinel || !('IntersectionObserver' in window)) { bar.dataset.show = 'true'; return; }
 
     const observer = new IntersectionObserver(([entry]) => {
@@ -86,6 +95,76 @@
     }, { threshold: 0 });
 
     observer.observe(sentinel);
+  }
+
+
+  /* ───────────────────  VÍDEO DE PORTADA  ─────────────────────────── */
+  /* El póster se ve siempre; el vídeo sólo se descarga cuando aporta:
+     no con movimiento reducido, ni con ahorro de datos, ni en 2G. */
+  function initHeroVideo() {
+    const video = $('[data-hero-video]');
+    if (!video) return;
+
+    const toggle = $('[data-hero-toggle]');
+    const conexion = navigator.connection || {};
+    const ahorro = conexion.saveData === true || /(^|-)2g$/.test(conexion.effectiveType || '');
+
+    if (NX.reduced() || ahorro) return;
+
+    const estrecho = window.matchMedia('(max-width: 48rem)').matches;
+    video.src = estrecho ? video.dataset.srcSmall : video.dataset.src;
+    video.load();
+
+    const arrancar = () => video.play().catch(() => { /* el navegador puede negarse */ });
+
+    video.addEventListener('canplay', () => {
+      video.dataset.playing = 'true';
+      if (toggle) toggle.hidden = false;
+      arrancar();
+    }, { once: true });
+
+    video.addEventListener('error', () => {
+      video.dataset.playing = 'false';
+      if (toggle) toggle.hidden = true;
+    });
+
+    if (!toggle) return;
+
+    const iconoPausa = $('[data-icon-pause]', toggle);
+    const iconoPlay = $('[data-icon-play]', toggle);
+
+    /* toggleAttribute y no .hidden: `hidden` es una propiedad de HTMLElement
+       y estos iconos son SVG, donde asignarla no hace absolutamente nada. */
+    const pintar = (enMarcha) => {
+      iconoPausa.toggleAttribute('hidden', !enMarcha);
+      iconoPlay.toggleAttribute('hidden', enMarcha);
+      toggle.setAttribute('aria-label', enMarcha ? 'Pausar el vídeo de fondo' : 'Reanudar el vídeo de fondo');
+    };
+
+    toggle.addEventListener('click', () => {
+      if (video.paused) { arrancar(); } else { video.pause(); }
+    });
+
+    video.addEventListener('play', () => pintar(true));
+    video.addEventListener('pause', () => pintar(false));
+  }
+
+  /* ──────────────  CABECERA SOBRE EL VÍDEO  ───────────────────────── */
+  /* Arranca en blanco desde el HTML para que no parpadee, y vuelve al
+     papel en cuanto la portada deja de cubrir la franja de la cabecera. */
+  function initHeaderOverHero() {
+    const header = $('.site-header');
+    const hero = $('.hero-cine');
+    if (!header || !hero) return;
+
+    if (!('IntersectionObserver' in window)) { header.dataset.over = 'false'; return; }
+
+    const alto = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 60;
+
+    new IntersectionObserver(([entrada]) => {
+      if (header.dataset.menuOpen === 'true') return;
+      header.dataset.over = String(entrada.isIntersecting);
+    }, { rootMargin: `-${Math.round(alto)}px 0px 0px 0px`, threshold: 0 }).observe(hero);
   }
 
   /* ───────────────────────  FICHA DEL ALUMNO  ──────────────────────── */
@@ -231,6 +310,8 @@
     restoreHash();
 
     initNav();
+    initHeaderOverHero();
+    initHeroVideo();
     initReveal();
     initStickyCta();
     initFicha();

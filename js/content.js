@@ -42,7 +42,7 @@ const ACADEMY = {
   hours: [
     { label: 'Lunes a jueves', value: '16:00 – 21:30', days: ['Mo', 'Tu', 'We', 'Th'], opens: '16:00', closes: '21:30' },
     { label: 'Viernes', value: '16:00 – 20:00', days: ['Fr'], opens: '16:00', closes: '20:00' },
-    { label: 'Sábados', value: 'Sólo intensivos y EBAU', days: ['Sa'], opens: '10:00', closes: '14:00' }
+    { label: 'Sábados', value: 'Sólo intensivos y PAU', days: ['Sa'], opens: '10:00', closes: '14:00' }
   ],
 
   /* ───────────────────  CIFRAS (ficticias, coherentes)  ─────────────── */
@@ -62,14 +62,14 @@ const ACADEMY = {
 
   /* ───────────────────────────  ASIGNATURAS  ───────────────────────── */
   subjects: [
-    { id: 'matematicas', name: 'Matemáticas',        levels: ['primaria', 'eso', 'bachillerato', 'ebau'] },
-    { id: 'fisica',      name: 'Física',             levels: ['eso', 'bachillerato', 'ebau'] },
-    { id: 'quimica',     name: 'Química',            levels: ['eso', 'bachillerato', 'ebau'] },
-    { id: 'biologia',    name: 'Biología',           levels: ['eso', 'bachillerato', 'ebau'] },
+    { id: 'matematicas', name: 'Matemáticas',        levels: ['primaria', 'eso', 'bachillerato', 'pau'] },
+    { id: 'fisica',      name: 'Física',             levels: ['eso', 'bachillerato', 'pau'] },
+    { id: 'quimica',     name: 'Química',            levels: ['eso', 'bachillerato', 'pau'] },
+    { id: 'biologia',    name: 'Biología',           levels: ['eso', 'bachillerato', 'pau'] },
     { id: 'ingles',      name: 'Inglés',             levels: ['primaria', 'eso', 'bachillerato'] },
-    { id: 'lengua',      name: 'Lengua',             levels: ['primaria', 'eso', 'bachillerato', 'ebau'] },
-    { id: 'dibujo',      name: 'Dibujo Técnico',     levels: ['bachillerato', 'ebau'] },
-    { id: 'economia',    name: 'Economía',           levels: ['bachillerato', 'ebau'] },
+    { id: 'lengua',      name: 'Lengua',             levels: ['primaria', 'eso', 'bachillerato', 'pau'] },
+    { id: 'dibujo',      name: 'Dibujo Técnico',     levels: ['bachillerato', 'pau'] },
+    { id: 'economia',    name: 'Economía',           levels: ['bachillerato', 'pau'] },
     { id: 'tecnicas',    name: 'Técnicas de estudio', levels: ['primaria', 'eso', 'bachillerato'] }
   ],
 
@@ -78,7 +78,7 @@ const ACADEMY = {
     { id: 'primaria',     name: 'Primaria',     courses: ['3º Primaria', '4º Primaria', '5º Primaria', '6º Primaria'] },
     { id: 'eso',          name: 'ESO',          courses: ['1º ESO', '2º ESO', '3º ESO', '4º ESO'] },
     { id: 'bachillerato', name: 'Bachillerato', courses: ['1º Bachillerato', '2º Bachillerato'] },
-    { id: 'ebau',         name: 'EBAU',         courses: ['Preparación EBAU'] }
+    { id: 'pau',         name: 'PAU',         courses: ['Preparación PAU'] }
   ],
 
   /* ──────────────────────────  PROGRAMAS  ──────────────────────────── */
@@ -132,13 +132,13 @@ const ACADEMY = {
       featured: true
     },
     {
-      id: 'ebau',
-      level: 'ebau',
+      id: 'pau',
+      level: 'pau',
       image: 'apuntes',
       imageAlt: 'Mesa de estudio con apuntes y modelos de examen',
-      name: 'Preparación EBAU',
+      name: 'Preparación PAU',
       ages: '2º de Bachillerato',
-      lead: 'La EBAU no premia saber más. Premia responder como piden.',
+      lead: 'La PAU no premia saber más. Premia responder como piden.',
       body: 'Modelos oficiales de la Comunidad de Madrid, corrección con criterio de examinador y control de tiempos. Refuerzo anual desde octubre e intensivos de abril a junio.',
       subjects: ['Matemáticas II', 'Matemáticas CCSS', 'Física', 'Química', 'Biología', 'Dibujo Técnico', 'Lengua'],
       groupSize: 'Grupos de 6',
@@ -200,10 +200,10 @@ const ACADEMY = {
       photo: 'assets/images/profe-carlos.webp',
       photoAlt: 'Carlos Nieto, profesor de Matemáticas y Física',
       name: 'Carlos Nieto',
-      role: 'Matemáticas y Física · Bachillerato y EBAU',
+      role: 'Matemáticas y Física · Bachillerato y PAU',
       years: 9,
       subjects: ['Matemáticas II', 'Física', 'Dibujo Técnico'],
-      bio: 'Lleva nueve años dando Matemáticas y su obsesión es que el alumno deje de memorizar pasos y entienda por qué funcionan. Corrige los simulacros de EBAU con la misma rúbrica que usan los tribunales.',
+      bio: 'Lleva nueve años dando Matemáticas y su obsesión es que el alumno deje de memorizar pasos y entienda por qué funcionan. Corrige los simulacros de PAU con la misma rúbrica que usan los tribunales.',
       initials: 'CN',
       accent: 'tinta'
     },
@@ -317,7 +317,7 @@ const ACADEMY = {
       { id: 'individual', name: 'Clase individual', hourly: 27,   note: 'Un profesor, un alumno. Horario flexible cada semana.' },
       { id: 'online',     name: 'Online en directo', hourly: 10.5, note: 'Grupos de 4 por videollamada, con pizarra compartida.' }
     ],
-    levelFactor: { primaria: 0.92, eso: 1, bachillerato: 1.12, ebau: 1.2 },
+    levelFactor: { primaria: 0.92, eso: 1, bachillerato: 1.12, pau: 1.2 },
     frequencies: [
       { id: 1, label: '1 día por semana' },
       { id: 2, label: '2 días por semana' },
@@ -344,7 +344,7 @@ const ACADEMY = {
       { id: 'g3', level: 'eso',          course: '3º y 4º ESO',     subject: 'Física y Química', days: 'Lunes y miércoles',  time: '18:45', duration: 90, seats: 6, taken: 3 },
       { id: 'g4', level: 'bachillerato', course: '1º Bachillerato', subject: 'Matemáticas I',   days: 'Martes y jueves',     time: '18:45', duration: 90, seats: 4, taken: 2 },
       { id: 'g5', level: 'bachillerato', course: '2º Bachillerato', subject: 'Química',         days: 'Lunes y miércoles',   time: '20:15', duration: 90, seats: 4, taken: 3 },
-      { id: 'g6', level: 'ebau',         course: 'EBAU',            subject: 'Matemáticas II',  days: 'Martes y jueves',     time: '20:15', duration: 90, seats: 6, taken: 5 },
+      { id: 'g6', level: 'pau',         course: 'PAU',            subject: 'Matemáticas II',  days: 'Martes y jueves',     time: '20:15', duration: 90, seats: 6, taken: 5 },
       { id: 'g7', level: 'primaria',     course: '5º y 6º Primaria', subject: 'Refuerzo general', days: 'Lunes a jueves',     time: '17:00', duration: 60, seats: 5, taken: 2 },
       { id: 'g8', level: 'eso',          course: 'ESO y Bachillerato', subject: 'Inglés · B2',  days: 'Martes y jueves',     time: '19:00', duration: 90, seats: 6, taken: 4 }
     ]
@@ -371,9 +371,9 @@ const ACADEMY = {
       initials: 'JP'
     },
     {
-      text: 'Entré en marzo con un 4 en Química de 2º y salí con un 7,1 en la EBAU. Los simulacros con tiempo real fueron lo que más me ayudó.',
+      text: 'Entré en marzo con un 4 en Química de 2º y salí con un 7,1 en la PAU. Los simulacros con tiempo real fueron lo que más me ayudó.',
       author: 'Lucía A.',
-      relation: 'Alumna, EBAU 2025',
+      relation: 'Alumna, PAU 2025',
       initials: 'LA'
     }
   ],
@@ -452,7 +452,7 @@ ACADEMY.diagnostic = {
         { value: 'primaria', label: 'Primaria', hint: '3º a 6º' },
         { value: 'eso', label: 'ESO', hint: '1º a 4º' },
         { value: 'bachillerato', label: 'Bachillerato', hint: '1º y 2º' },
-        { value: 'ebau', label: 'Preparando EBAU', hint: '2º de Bachillerato' }
+        { value: 'pau', label: 'Preparando PAU', hint: '2º de Bachillerato' }
       ]
     },
     {
