@@ -1,0 +1,171 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   NEXO Academia — responsive.css
+   Ajustes por formato. El diseño base es móvil; aquí se corrige lo que
+   cada ancho concreto necesita, no sólo «que quepa».
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ────────  Hasta 360 px · la cabecera cede el botón a la barra fija  ──── */
+@media (max-width: 22.5rem) {
+  .header-actions .btn { display: none; }
+  .nav-toggle { margin-right: 0; }
+}
+
+/* ───────────────  320 – 374 px · móviles pequeños  ───────────────── */
+@media (max-width: 23.4375rem) {
+  :root {
+    --wrap:      min(100% - 1.75rem, 1180px);
+    --wrap-wide: min(100% - 1.75rem, 1400px);
+    --wrap-text: min(100% - 1.75rem, 46rem);
+    --s-9: 4.5rem;
+    --s-10: 5.5rem;
+  }
+
+  .hero__title { font-size: clamp(2.35rem, 2rem + 4vw, 2.9rem); max-width: 11ch; }
+  .hero__proof { gap: .5rem var(--s-4); }
+
+  .brand { font-size: 1.15rem; }
+  .brand__sub { display: none; }
+
+  .tool__head, .tool__body, .tool__foot, .tool__intro { padding-inline: var(--s-4); }
+  .result__head, .result__body { padding: var(--s-4); }
+
+  .options--2 { grid-template-columns: 1fr; }
+  .segmented { width: 100%; }
+  .segmented label { flex: 1 1 auto; }
+  .segmented span { text-align: center; }
+
+  .closer__actions .btn, .result__actions .btn { width: 100%; }
+  .figure-out__value { font-size: clamp(2.6rem, 2rem + 8vw, 3.4rem); }
+
+  .slot { grid-template-columns: 1fr; }
+  .slot__seats { justify-items: start; }
+}
+
+/* ─────────  Hasta 480 px · las llamadas a la acción, a ancho completo  ───── */
+@media (max-width: 30rem) {
+  .hero__actions,
+  .closer__actions,
+  .result__actions { display: grid; grid-template-columns: 1fr; }
+  .hero__actions .btn,
+  .closer__actions .btn,
+  .result__actions .btn { width: 100%; }
+}
+
+/* ──────────────  375 – 429 px · móvil estándar  ──────────────────── */
+@media (min-width: 23.4375rem) and (max-width: 26.8125rem) {
+  .options--2 { grid-template-columns: 1fr; }
+}
+
+/* ──────────  430 – 639 px · móviles grandes en horizontal  ───────── */
+@media (min-width: 26.875rem) {
+  .options--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .quote blockquote { font-size: var(--step-2); }
+}
+
+/* ─────────────────  640 px · dos columnas ligeras  ───────────────── */
+@media (min-width: 40rem) {
+  .hero__proof { gap: var(--s-3) var(--s-6); }
+  .step-panel__title { font-size: var(--step-3); }
+  .tool__body { padding: var(--s-6); }
+  .tool__head, .tool__foot { padding-inline: var(--s-6); }
+  .tool__intro { padding-inline: var(--s-6); }
+  .result__head, .result__body { padding: var(--s-6); }
+}
+
+/* ────────────────────  768 px · tablet vertical  ─────────────────── */
+@media (min-width: 48rem) {
+  :root {
+    --wrap:      min(100% - 3.5rem, 1180px);
+    --wrap-wide: min(100% - 3.5rem, 1400px);
+    --wrap-text: min(100% - 3.5rem, 46rem);
+  }
+
+  .page-head { padding-block: clamp(2.5rem, 1rem + 4vw, 4rem) clamp(2.5rem, 1rem + 3vw, 3.5rem); }
+  .footer-grid { gap: var(--s-7) var(--s-7); }
+  .symptom__quote { font-size: var(--step-3); }
+}
+
+/* ───────────────  1024 px · tablet apaisada y portátil  ──────────── */
+@media (min-width: 64rem) {
+  :root { --header-h: 68px; }
+
+  .hero { padding-block: clamp(3rem, 1rem + 5vw, 5.5rem) clamp(3.5rem, 1.5rem + 5vw, 6rem); }
+
+  /* La ficha del alumno acompaña al scroll sólo cuando hay sitio real */
+  .tools-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: var(--s-7);
+    align-items: start;
+  }
+
+  .mobile-nav { display: none !important; }
+  .sticky-cta { display: none !important; }
+}
+
+/* ──────────────────  1280 px · escritorio cómodo  ────────────────── */
+@media (min-width: 80rem) {
+  .tools-layout { grid-template-columns: minmax(0, 1fr) 22rem; gap: var(--s-8); }
+  .program { column-gap: var(--s-7); }
+  .method__item { column-gap: var(--s-7); }
+}
+
+/* ────────────────────  1440 px · escritorio grande  ──────────────── */
+@media (min-width: 90rem) {
+  :root {
+    --wrap:      min(100% - 5rem, 1240px);
+    --wrap-wide: min(100% - 5rem, 1480px);
+  }
+  .hero__title { max-width: 12ch; }
+  .s-head { padding-top: var(--s-6); }
+}
+
+/* ────────────  1920 px · monitores amplios: no estirar  ──────────── */
+@media (min-width: 120rem) {
+  :root {
+    --wrap:      min(100% - 8rem, 1320px);
+    --wrap-wide: min(100% - 8rem, 1560px);
+    --step-0:    1.09375rem;
+    --step--1:   .9375rem;
+  }
+  body { line-height: 1.62; }
+}
+
+/* ─────────────  2560 px · el contenido manda, no el ancho  ───────── */
+@media (min-width: 160rem) {
+  :root {
+    --wrap:      min(100% - 10rem, 1400px);
+    --wrap-wide: min(100% - 10rem, 1680px);
+    --step-0:    1.125rem;
+  }
+  .hero__title { font-size: 5.6rem; }
+}
+
+/* ───────────────  Pantallas bajas: menos aire vertical  ─────────── */
+@media (max-height: 34rem) and (orientation: landscape) {
+  .hero { padding-block: var(--s-6); }
+  .hero::before { display: none; }
+  .mobile-nav { padding-block: var(--s-4); }
+  .mobile-nav__link { padding: .7rem 0; font-size: var(--step-1); }
+}
+
+/* ────────────────  Puntero grueso: áreas táctiles amplias  ───────── */
+@media (pointer: coarse) {
+  .nav__link, .footer-col a, .crumbs a { padding-block: .5rem; }
+  .acc-btn { padding-block: var(--s-5); }
+  .option { min-height: 56px; }
+}
+
+/* ────────────────────  Contraste alto del sistema  ───────────────── */
+@media (prefers-contrast: more) {
+  :root {
+    --tx-2: #23272d;
+    --tx-3: #44484f;
+    --rule: rgba(20, 22, 26, .3);
+    --rule-strong: rgba(20, 22, 26, .55);
+    --tx-2-on-ink: #d3d7dd;
+    --rule-on-ink: rgba(250, 247, 242, .4);
+  }
+  .btn { border-width: 1.5px; }
+  .option { border-width: 1.5px; }
+}

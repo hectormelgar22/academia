@@ -1,0 +1,10 @@
+# Herramientas del entorno de desarrollo
+.claude/
+
+# Sistema
+Thumbs.db
+.DS_Store
+
+# Python de los scripts de assets
+__pycache__/
+*.pyc
