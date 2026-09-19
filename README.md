@@ -17,7 +17,7 @@ terminan generando un mensaje de WhatsApp ya escrito y cualificado.
 |---|---|
 | **Negocio** | NEXO Academia (ficticia), Calle Monasterio de Arlanza 12, Montecarmelo, Madrid |
 | **Stack** | HTML5 + CSS3 + JavaScript vanilla. Sin frameworks, sin build, sin backend |
-| **Páginas** | Inicio, Cursos, Metodología, Profesores, Herramientas, Diagnóstico, Contacto, Privacidad |
+| **Páginas** | Inicio, Cursos, Precios, Metodología, Profesores, Herramientas, Diagnóstico, Contacto, Privacidad y 404 |
 | **Conversión principal** | Solicitar valoración inicial gratuita |
 | **Conversión secundaria** | WhatsApp con mensaje contextual |
 | **Tercera** | Usar una herramienta y enviar el resultado |
@@ -454,14 +454,16 @@ pero son los pasos naturales si el negocio crece:
 
 ```text
 /
-├── index.html              Portada
+├── index.html              Portada con vídeo a pantalla completa
 ├── cursos.html             Programas y comparativa de modalidades
+├── precios.html            Tarifas públicas, qué incluye y calculadora
 ├── metodologia.html        Método, primera semana y qué no hacemos
 ├── profesores.html         Equipo y criterios de selección
 ├── herramientas.html       Hub con seis herramientas + ficha del alumno
 ├── diagnostico.html        Diagnóstico académico completo
 ├── contacto.html           Solicitud por pasos, datos y preguntas frecuentes
 ├── privacidad.html         Qué datos se guardan y dónde
+├── 404.html                Página de error con accesos rápidos
 │
 ├── css/
 │   ├── main.css            Tokens, tipografía, layout y secciones
@@ -538,6 +540,15 @@ valores: `--paper`, `--navy`, `--blue` y `--amber`.
   El ámbar de relleno (`--amber`) no llega a AA como texto, así que para texto
   existe `--amber-ink`; la distinción está marcada en los tokens. Lo mismo pasa
   con el rojo de corrección: `--red` rellena, `--red-deep` escribe.
+- **Los precios están publicados en su propia página.** La tabla se calcula con
+  el mismo motor que la calculadora, así que no pueden contradecirse: si cambias
+  una tarifa en `content.js`, cambian las dos a la vez.
+- **El mapa no se carga hasta que el visitante lo pide**, y cuando se carga es
+  OpenStreetMap, no Google. Es lo coherente con prometer que la web no hace
+  peticiones a terceros ni instala cookies.
+- **Las herramientas de la portada enseñan una miniatura de lo que devuelven.**
+  Un enlace con el nombre de la herramienta no invita a pulsar; ver el resultado
+  en pequeño, sí.
 - **La portada es un vídeo, no una foto.** Abre con un aula real a pantalla
   completa, con la cabecera en cristal encima y la tipografía centrada. El vídeo
   aporta toda la profundidad: no hay manchas de color ni adornos superpuestos.

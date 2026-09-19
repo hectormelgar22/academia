@@ -68,7 +68,7 @@
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
-    { "@type": "Question", "name": "¿Cuánto cuesta el refuerzo al mes?", "acceptedAnswer": { "@type": "Answer", "text": "Depende del curso, de la modalidad y de cuántos días a la semana venga el alumno. Un grupo reducido de ESO de dos tardes de 90 minutos ronda los 140–160 € al mes; una tarde de 60 minutos, 95–105 €; y una clase individual semanal de una hora, 110–125 €. En la web hay una calculadora que da la horquilla exacta antes de escribirnos." } },
+    { "@type": "Question", "name": "¿Cuánto cuesta el refuerzo al mes?", "acceptedAnswer": { "@type": "Answer", "text": "Depende del curso, de la modalidad y de cuántos días a la semana venga el alumno. Un grupo reducido de ESO de dos tardes de 90 minutos ronda los 140–160 € al mes; dos tardes de 60 minutos, 95–105 €; y una clase individual semanal de una hora, 110–125 €. En la web hay una calculadora que da la horquilla exacta antes de escribirnos." } },
     { "@type": "Question", "name": "¿Hay que pagar matrícula o firmar permanencia?", "acceptedAnswer": { "@type": "Answer", "text": "No. No hay matrícula ni permanencia. Se paga mes a mes y se avisa con quince días si se quiere dejar." } },
     { "@type": "Question", "name": "¿Cuántos alumnos hay por grupo?", "acceptedAnswer": { "@type": "Answer", "text": "Máximo seis, y en Bachillerato máximo cuatro. Los grupos se forman por curso y asignatura, nunca mezclando niveles distintos en la misma mesa." } },
     { "@type": "Question", "name": "¿La primera clase es gratuita?", "acceptedAnswer": { "@type": "Answer", "text": "La valoración inicial sí: son unos 45 minutos con una prueba corta y una conversación, sin coste ni compromiso. De ahí sale el plan de trabajo por escrito." } },
@@ -92,6 +92,7 @@
     </a>
     <nav class="nav" aria-label="Principal">
       <a class="nav__link" href="cursos.html">Cursos</a>
+      <a class="nav__link" href="precios.html">Precios</a>
       <a class="nav__link" href="metodologia.html">Metodología</a>
       <a class="nav__link" href="profesores.html">Profesores</a>
       <a class="nav__link" href="herramientas.html">Herramientas</a>
@@ -111,6 +112,7 @@
   <div class="wrap">
     <nav aria-label="Menú móvil">
       <a class="mobile-nav__link" href="cursos.html">Cursos <span>Primaria a PAU</span></a>
+      <a class="mobile-nav__link" href="precios.html">Precios <span>Tarifas públicas</span></a>
       <a class="mobile-nav__link" href="metodologia.html">Metodología <span>Cómo trabajamos</span></a>
       <a class="mobile-nav__link" href="profesores.html">Profesores <span>6 personas</span></a>
       <a class="mobile-nav__link" href="herramientas.html">Herramientas <span>Gratuitas</span></a>
@@ -210,7 +212,17 @@
         </div>
       </div>
 
-      <div class="phases">
+      <div class="map" data-map
+           data-embed="https://www.openstreetmap.org/export/embed.html?bbox=-3.6929%2C40.4877%2C-3.6849%2C40.4957&amp;layer=mapnik&amp;marker=40.4917%2C-3.6889">
+        <div class="map__ask">
+          <p class="map__addr"><span data-academy="contact.street"></span><br><span data-academy="contact.city"></span></p>
+          <button class="btn btn--sm" type="button" data-map-load>Ver el mapa aquí</button>
+          <a class="link-arrow" data-link="maps" href="#" rel="noopener">Abrir en Google Maps</a>
+          <p class="map__note">El mapa se carga sólo si lo pides: así esta página no hace ninguna petición a terceros por defecto.</p>
+        </div>
+      </div>
+
+      <div class="phases mt-6">
         <div class="phase">
           <p class="phase__days">Metro</p>
           <p class="phase__name">Montecarmelo (línea 7B)</p>
@@ -273,6 +285,7 @@
           <li><a href="cursos.html#programa-bachillerato">Bachillerato</a></li>
           <li><a href="cursos.html#programa-pau">Preparación PAU</a></li>
           <li><a href="cursos.html#programa-ingles">Inglés</a></li>
+          <li><a href="precios.html">Precios y tarifas</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -306,6 +319,14 @@
   <a class="btn" href="#solicitud">Empezar solicitud</a>
   <a class="btn btn--ghost" data-link="wa" data-wa-intro="Me gustaría información sobre las clases de refuerzo." href="#">WhatsApp</a>
 </div>
+
+<a class="wa-float" data-wa-context="Escribo desde vuestra web." href="#" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M3.5 20.5 5 16a8.5 8.5 0 1 1 3.2 3.1l-4.7 1.4Z"/>
+    <path d="M9 9.5c0 3 2.5 5.5 5.5 5.5.6 0 1-.4 1-.9l-.2-1-1.6-.5-.8.9a5.7 5.7 0 0 1-2.4-2.4l.9-.8-.5-1.6-1-.2c-.5 0-.9.4-.9 1Z"/>
+  </svg>
+  <span>WhatsApp</span>
+</a>
 
 </body>
 </html>

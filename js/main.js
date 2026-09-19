@@ -82,19 +82,43 @@
     });
   }
 
-  /* ───────────────────────  BARRA FIJA EN MÓVIL  ───────────────────── */
-  function initStickyCta() {
-    const bar = $('.sticky-cta');
-    if (!bar) return;
+  /* ─────────────  ACCESOS RÁPIDOS: BARRA MÓVIL Y WHATSAPP  ─────────── */
+  /* Ambos aparecen cuando la portada deja de verse, para no tapar el vídeo
+     ni competir con las llamadas a la acción del encabezado. */
+  function initFloatingCtas() {
+    const piezas = [$('.sticky-cta'), $('.wa-float')].filter(Boolean);
+    if (!piezas.length) return;
 
     const sentinel = $('.hero-cine') || $('.page-head');
-    if (!sentinel || !('IntersectionObserver' in window)) { bar.dataset.show = 'true'; return; }
+    if (!sentinel || !('IntersectionObserver' in window)) {
+      piezas.forEach((p) => { p.dataset.show = 'true'; });
+      return;
+    }
 
-    const observer = new IntersectionObserver(([entry]) => {
-      bar.dataset.show = String(!entry.isIntersecting);
-    }, { threshold: 0 });
+    new IntersectionObserver(([entry]) => {
+      piezas.forEach((p) => { p.dataset.show = String(!entry.isIntersecting); });
+    }, { threshold: 0 }).observe(sentinel);
+  }
 
-    observer.observe(sentinel);
+  /* ────────────────────  MAPA BAJO PETICIÓN  ───────────────────────── */
+  /* No se carga nada de terceros hasta que el visitante lo pide. */
+  function initMap() {
+    const caja = $('[data-map]');
+    if (!caja) return;
+
+    const boton = $('[data-map-load]', caja);
+    if (!boton) return;
+
+    boton.addEventListener('click', () => {
+      const marco = el('iframe', {
+        src: caja.dataset.embed,
+        title: 'Mapa con la ubicación de la academia',
+        loading: 'lazy',
+        referrerpolicy: 'no-referrer-when-downgrade'
+      });
+      caja.replaceChildren(marco);
+      NX.toast('Mapa cargado desde OpenStreetMap.');
+    });
   }
 
 
@@ -313,7 +337,8 @@
     initHeaderOverHero();
     initHeroVideo();
     initReveal();
-    initStickyCta();
+    initFloatingCtas();
+    initMap();
     initFicha();
     initContextLinks();
   });

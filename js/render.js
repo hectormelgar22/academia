@@ -346,10 +346,138 @@ const Render = (() => {
       ])));
   }
 
+
+  /* ──────────────  TARJETAS DE HERRAMIENTA CON MUESTRA  ──────────────── */
+  /* Cada tarjeta enseña en miniatura lo que la herramienta devuelve.
+     Es lo que convierte un enlace en algo que apetece pulsar. */
+
+  const MUESTRAS = {
+    diagnostico: `
+      <div class="tprev__bar"><span style="--p:.62"></span></div>
+      <p class="tprev__q">¿Dónde se rompe exactamente?</p>
+      <div class="tprev__chips">
+        <span>No entiende la explicación</span>
+        <span data-on>Suspende aunque estudia</span>
+        <span>No le da tiempo</span>
+      </div>`,
+
+    nota: `
+      <p class="tprev__num">7,4</p>
+      <p class="tprev__foot">es lo que necesitas en lo que queda</p>
+      <div class="tprev__weights">
+        <i style="--w:55" data-s="ok">6,2</i>
+        <i style="--w:30" data-s="ok">8,0</i>
+        <i style="--w:15" data-s="pend">?</i>
+      </div>`,
+
+    planner: `
+      <div class="tprev__week">
+        <div class="tprev__day"><b>L</b><i style="--h:60"></i><i style="--h:34" data-alt></i></div>
+        <div class="tprev__day"><b>M</b><i style="--h:44"></i></div>
+        <div class="tprev__day"><b>X</b><i style="--h:60" data-alt></i><i style="--h:44"></i></div>
+        <div class="tprev__day"><b>J</b><i style="--h:34"></i></div>
+      </div>
+      <p class="tprev__foot">Bloques de 45 min, lo difícil primero</p>`,
+
+    examen: `
+      <div class="tprev__phases">
+        <div><span>Días 1–4</span><b>Conceptos base</b></div>
+        <div><span>Días 5–9</span><b>Problemas tipo</b></div>
+        <div data-on><span>Día 10</span><b>Simulacro con reloj</b></div>
+      </div>`,
+
+    precio: `
+      <p class="tprev__num">140–160<small> €/mes</small></p>
+      <p class="tprev__foot">Grupo de 6 · 2 días · 90 min</p>`,
+
+    modalidad: `
+      <div class="tprev__chips tprev__chips--big">
+        <span data-on>Grupo reducido</span>
+        <span>Individual</span>
+      </div>
+      <p class="tprev__foot">Y dice el grupo si es lo que encaja</p>`,
+
+    plazas: `
+      <div class="tprev__slots">
+        <div><b>Matemáticas · 3.º ESO</b><span class="tprev__dots"><i data-t></i><i data-t></i><i data-t></i><i data-t></i><i></i><i></i></span></div>
+        <div><b>Química · 2.º Bach</b><span class="tprev__dots"><i data-t></i><i data-t></i><i data-t></i><i></i></span></div>
+      </div>
+      <p class="tprev__foot">2 plazas libres esta semana</p>`
+  };
+
+  function toolCards(node) {
+    const limit = Number(node.dataset.limit) || 4;
+    const items = ACADEMY.tools.slice(0, limit);
+
+    node.replaceChildren(...items.map((tool, i) => el('a', {
+      class: 'tcard',
+      href: tool.href,
+      'data-reveal': '',
+      style: `--reveal-delay:${i * 70}ms`
+    }, [
+      el('div', { class: `tprev tprev--${tool.id}`, 'aria-hidden': 'true', html: MUESTRAS[tool.id] || '' }),
+      el('div', { class: 'tcard__body' }, [
+        el('h3', { class: 'tcard__name', text: tool.name }),
+        el('p', { class: 'tcard__claim', text: tool.claim })
+      ]),
+      el('div', { class: 'tcard__foot' }, [
+        el('span', { class: 'tcard__time', text: tool.time }),
+        el('span', { class: 'tcard__go', html: `Abrir${iconSvg('arrow', { size: 14 })}` })
+      ])
+    ])));
+  }
+
+
+  /* ──────────────────────  TABLA DE PRECIOS  ─────────────────────────── */
+  /* Se calcula con el mismo motor que la calculadora: si cambias una tarifa
+     en content.js, la tabla y la herramienta no pueden contradecirse. */
+  function priceTable(node) {
+    if (typeof Pricing === 'undefined') return;
+
+    const combinaciones = [
+      { modalityId: 'grupo',      frequency: 2, duration: 90, etiqueta: '2 días · 90 min' },
+      { modalityId: 'grupo',      frequency: 1, duration: 60, etiqueta: '1 día · 60 min' },
+      { modalityId: 'individual', frequency: 1, duration: 60, etiqueta: '1 día · 60 min' },
+      { modalityId: 'online',     frequency: 2, duration: 90, etiqueta: '2 días · 90 min' }
+    ];
+
+    const cabecera = el('tr', {}, [
+      el('th', { scope: 'col', text: 'Curso' }),
+      ...combinaciones.map((c) => el('th', { scope: 'col' }, [
+        el('span', { style: 'display:block', text: NX.modalityName(c.modalityId) }),
+        el('span', { style: 'display:block;font-weight:400;text-transform:none;letter-spacing:0;color:var(--tx-3)', text: c.etiqueta })
+      ]))
+    ]);
+
+    const filas = ACADEMY.levels.map((level) => el('tr', {}, [
+      el('th', { scope: 'row', style: 'text-transform:none;letter-spacing:0;font-size:var(--step--1);color:var(--tx);font-weight:500', text: level.name }),
+      ...combinaciones.map((c) => el('td', {
+        class: c.modalityId === 'grupo' && c.frequency === 2 ? 'is-strong' : '',
+        text: Pricing.estimate({ ...c, levelId: level.id }).text.replace(' €/mes', ' €')
+      }))
+    ]));
+
+    node.replaceChildren(
+      el('thead', {}, [cabecera]),
+      el('tbody', {}, filas)
+    );
+  }
+
+  /* ─────────────────────  DESCUENTOS Y CONDICIONES  ──────────────────── */
+  function priceTerms(node) {
+    node.replaceChildren(...ACADEMY.pricing.discounts.map((d) => el('div', { class: 'meta-row' }, [
+      el('dt', { text: d.label }),
+      el('dd', { text: d.value })
+    ])));
+  }
+
   /* ────────────────────────────  ARRANQUE  ─────────────────────────── */
   const RENDERERS = {
     symptoms, method, programs, teachers, testimonials, faqs,
     'program-cards': programCards,
+    'tool-cards': toolCards,
+    'price-table': priceTable,
+    'price-terms': priceTerms,
     'tool-index': toolIndex
   };
 

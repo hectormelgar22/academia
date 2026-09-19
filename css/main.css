@@ -237,6 +237,9 @@ strong, b { font-weight: 600; }
 }
 
 .section--ink { background: var(--navy); }
+
+/* La franja que sigue al hero recoge su azul sin corte visible. */
+.hero-cine + .section--ink { padding-top: clamp(2.5rem, 1.5rem + 3vw, 4rem); }
 .site-footer  { background: var(--navy-2); }
 
 .rule { border: 0; border-top: 1px solid var(--rule); margin: 0; }
@@ -577,7 +580,7 @@ strong, b { font-weight: 600; }
   display: grid;
   gap: var(--s-2) var(--s-6);
   padding-block: clamp(1.4rem, 1rem + 1.4vw, 2.2rem);
-  border-top: 1px solid var(--rule-on-ink);
+  border-top: 1px solid var(--rule);
 }
 .symptom:first-child { border-top: 0; }
 
@@ -589,7 +592,7 @@ strong, b { font-weight: 600; }
   font-variation-settings: 'SOFT' 0, 'WONK' 0;
   max-width: 20ch;
 }
-.symptom__note { color: var(--tx-2-on-ink); font-size: var(--step--1); max-width: 42ch; align-self: center; }
+.symptom__note { color: var(--tx-2); font-size: var(--step--1); max-width: 42ch; align-self: center; }
 
 @media (min-width: 58rem) {
   .symptom { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: baseline; }
@@ -873,11 +876,11 @@ strong, b { font-weight: 600; }
   pointer-events: none;
   background:
     linear-gradient(to bottom,
-      rgba(11, 27, 45, .84) 0%,
-      rgba(11, 27, 45, .58) 24%,
-      rgba(11, 27, 45, .58) 72%,
-      rgba(11, 27, 45, .9) 90%,
-      var(--paper) 100%);
+      rgba(20, 49, 79, .86) 0%,
+      rgba(20, 49, 79, .58) 24%,
+      rgba(20, 49, 79, .58) 66%,
+      rgba(20, 49, 79, .88) 86%,
+      var(--navy) 100%);
 }
 
 .hero-cine__inner {

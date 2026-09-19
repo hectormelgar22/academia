@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Profesores | Equipo de NEXO Academia, Madrid</title>
-<meta name="description" content="Seis profesores de Matemáticas, Física, Química, Biología, Inglés, Lengua y técnicas de estudio en Montecarmelo, Madrid. Los mismos durante todo el curso.">
-<link rel="canonical" href="https://nexoacademia.es/profesores.html">
+<title>Precios y tarifas | NEXO Academia, Montecarmelo</title>
+<meta name="description" content="Precios del refuerzo escolar en Montecarmelo: grupo reducido desde 45 € al mes, clase individual y online. Sin matrícula, sin permanencia y con la valoración inicial gratuita.">
+<link rel="canonical" href="https://nexoacademia.es/precios.html">
 <meta name="theme-color" content="#fbf8f2">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="NEXO Academia">
 <meta property="og:locale" content="es_ES">
-<meta property="og:title" content="Profesores | Equipo de NEXO Academia, Madrid">
-<meta property="og:description" content="Seis profesores, los mismos todo el curso. Matemáticas, Ciencias, Inglés, Lengua y técnicas de estudio.">
-<meta property="og:url" content="https://nexoacademia.es/profesores.html">
+<meta property="og:title" content="Precios y tarifas | NEXO Academia">
+<meta property="og:description" content="Tarifas públicas, sin matrícula ni permanencia. Calcula tu precio exacto antes de escribirnos.">
+<meta property="og:url" content="https://nexoacademia.es/precios.html">
 <meta property="og:image" content="https://nexoacademia.es/assets/images/og-nexo.png">
 <meta name="twitter:card" content="summary_large_image">
 
@@ -29,6 +29,7 @@
 <script src="js/utils.js" defer></script>
 <script src="js/render.js" defer></script>
 <script src="js/main.js" defer></script>
+<script src="js/calculator.js" defer></script>
 
 <script type="application/ld+json">
 {
@@ -36,22 +37,19 @@
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://nexoacademia.es/" },
-    { "@type": "ListItem", "position": 2, "name": "Profesores", "item": "https://nexoacademia.es/profesores.html" }
+    { "@type": "ListItem", "position": 2, "name": "Precios", "item": "https://nexoacademia.es/precios.html" }
   ]
 }
 </script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  "name": "Equipo docente de NEXO Academia",
-  "itemListElement": [
-    { "@type": "ListItem", "position": 1, "item": { "@type": "Person", "name": "Marta Ibáñez", "jobTitle": "Dirección académica y profesora de Matemáticas", "worksFor": { "@type": "EducationalOrganization", "name": "NEXO Academia" } } },
-    { "@type": "ListItem", "position": 2, "item": { "@type": "Person", "name": "Carlos Nieto", "jobTitle": "Profesor de Matemáticas y Física", "worksFor": { "@type": "EducationalOrganization", "name": "NEXO Academia" } } },
-    { "@type": "ListItem", "position": 3, "item": { "@type": "Person", "name": "Elena Sanz", "jobTitle": "Profesora de Química y Biología", "worksFor": { "@type": "EducationalOrganization", "name": "NEXO Academia" } } },
-    { "@type": "ListItem", "position": 4, "item": { "@type": "Person", "name": "David Ferreras", "jobTitle": "Profesor de Inglés y examinador Cambridge", "worksFor": { "@type": "EducationalOrganization", "name": "NEXO Academia" } } },
-    { "@type": "ListItem", "position": 5, "item": { "@type": "Person", "name": "Nuria Caballero", "jobTitle": "Profesora de Primaria y primer ciclo de ESO", "worksFor": { "@type": "EducationalOrganization", "name": "NEXO Academia" } } },
-    { "@type": "ListItem", "position": 6, "item": { "@type": "Person", "name": "Javier Arenas", "jobTitle": "Profesor de técnicas de estudio y Lengua", "worksFor": { "@type": "EducationalOrganization", "name": "NEXO Academia" } } }
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "\u00bfCu\u00e1nto cuesta el refuerzo escolar al mes?", "acceptedAnswer": { "@type": "Answer", "text": "Un grupo reducido de ESO de dos tardes de 90 minutos ronda los 140-160 \u20ac al mes; dos tardes de 60 minutos, 95-105 \u20ac; y una clase individual semanal de una hora, 110-125 \u20ac. El precio depende del curso, la modalidad, la frecuencia y la duraci\u00f3n de cada sesi\u00f3n." } },
+    { "@type": "Question", "name": "\u00bfHay matr\u00edcula o permanencia?", "acceptedAnswer": { "@type": "Answer", "text": "No. La matr\u00edcula es de 0 \u20ac y no hay permanencia: se paga mes a mes y se avisa con quince d\u00edas para dejarlo." } },
+    { "@type": "Question", "name": "\u00bfLa primera valoraci\u00f3n se cobra?", "acceptedAnswer": { "@type": "Answer", "text": "No. La valoraci\u00f3n inicial son unos 45 minutos con una prueba corta y una conversaci\u00f3n, sin coste ni compromiso, y de ah\u00ed sale el plan de trabajo por escrito." } },
+    { "@type": "Question", "name": "\u00bfHay descuento para hermanos?", "acceptedAnswer": { "@type": "Answer", "text": "S\u00ed, el segundo hermano tiene un 10 % de descuento sobre la cuota mensual." } }
   ]
 }
 </script>
@@ -109,72 +107,107 @@
       <nav aria-label="Migas de pan">
         <ol class="crumbs">
           <li><a href="index.html">Inicio</a></li>
-          <li><span aria-current="page">Profesores</span></li>
+          <li><span aria-current="page">Precios</span></li>
         </ol>
       </nav>
       <div class="page-head__grid">
-        <h1>Seis personas. Ninguna rotación a mitad de curso.</h1>
+        <h1>Lo que cuesta, sin tener que preguntar.</h1>
         <div>
-          <p class="lead">Quien empieza con un alumno en octubre sigue con él en junio. Es una decisión de tamaño: no crecemos más rápido de lo que podemos contratar bien.</p>
+          <p class="lead">Las tarifas están publicadas y el cálculo es visible: precio por hora según modalidad y curso, por las horas que salen al mes. Ni matrícula, ni permanencia, ni letra pequeña.</p>
+          <p class="marginalia mt-5">Publicamos los precios porque preguntar cuánto cuesta algo no debería dar apuro.</p>
         </div>
       </div>
     </div>
   </div>
 
+  <section class="section-tight">
+    <div class="wrap">
+      <h2 class="visually-hidden">Tarifas por curso y modalidad</h2>
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Precios orientativos por curso y modalidad">
+        <table class="table table--wide" data-render="price-table"></table>
+      </div>
+      <p class="small mt-5">Precios orientativos al mes, redondeados a múltiplos de 5 €. La horquilla existe porque el precio definitivo se cierra tras la valoración inicial, cuando ya sabemos cuántas sesiones hacen falta de verdad.</p>
+    </div>
+  </section>
+
+  <section class="section section--paper2">
+    <div class="wrap media">
+      <div class="media__text">
+        <h2>Qué entra en la cuota.</h2>
+        <div class="method">
+          <article class="method__item">
+            <div><p class="method__step">01</p></div>
+            <div class="method__body"><h3 class="method__title">Las sesiones y el material</h3></div>
+            <p class="method__text">Fichas, colecciones de problemas y modelos de examen incluidos. No se cobra material aparte ni a mitad de curso.</p>
+          </article>
+          <article class="method__item">
+            <div><p class="method__step">02</p></div>
+            <div class="method__body"><h3 class="method__title">El seguimiento por escrito</h3></div>
+            <p class="method__text">El informe de las cuatro semanas y las llamadas cuando algo se tuerce antes. No es un extra.</p>
+          </article>
+          <article class="method__item">
+            <div><p class="method__step">03</p></div>
+            <div class="method__body"><h3 class="method__title">La valoración inicial</h3></div>
+            <p class="method__text">45 minutos con prueba y plan por escrito, antes de pagar nada y sin compromiso de quedarse.</p>
+          </article>
+        </div>
+
+        <dl class="grid mt-6" style="gap:.75rem;max-width:26rem" data-render="price-terms"></dl>
+      </div>
+
+      <div class="shot shot--photo">
+        <img src="assets/images/apuntes.webp"
+             srcset="assets/images/apuntes-640.webp 640w, assets/images/apuntes.webp 1200w"
+             sizes="(min-width: 58rem) 34rem, 92vw"
+             width="1200" height="900" loading="lazy" decoding="async"
+             alt="Material de estudio y modelos de examen sobre una mesa">
+      </div>
+    </div>
+  </section>
+
   <section class="section">
     <div class="wrap">
-      <h2 class="visually-hidden">Equipo docente</h2>
-      <div class="teachers" data-render="teachers"></div>
+      <div class="s-head">
+        <h2 class="s-head__title">Calcula el tuyo exacto.</h2>
+        <div class="s-head__aside">
+          <p>Curso, asignatura, modalidad, frecuencia y duración. Devuelve la horquilla con estas mismas tarifas y, si quieres, el mensaje de WhatsApp ya escrito.</p>
+        </div>
+      </div>
+
+      <article class="tool" id="precio">
+        <header class="tool__head">
+          <h3 class="tool__title">Calculadora de precio</h3>
+          <span class="tool__meta">30 segundos</span>
+        </header>
+        <div class="tool__body" data-tool="precio"></div>
+        <footer class="tool__foot">
+          <p>Precio orientativo, nunca un compromiso contractual.</p>
+        </footer>
+      </article>
     </div>
   </section>
 
   <section class="section section--paper2">
     <div class="wrap">
       <div class="s-head">
-        <h2 class="s-head__title">Cómo elegimos a quien entra.</h2>
+        <h2 class="s-head__title">Lo que más se pregunta sobre el precio.</h2>
         <div class="s-head__aside">
-          <p>Tres filtros, en este orden. El tercero es el que descarta a más gente.</p>
+          <p>Si falta la tuya, escríbenos y la añadimos.</p>
         </div>
       </div>
-
-      <div class="method">
-        <article class="method__item">
-          <div>
-            <p class="method__step">01</p>
-            <p class="method__time">Formación</p>
-          </div>
-          <div class="method__body"><h3 class="method__title">Titulación en la materia</h3></div>
-          <p class="method__text">Grado en la disciplina que va a impartir, no en «educación» genérica. Para Inglés, además, acreditación de nivel C1 o superior.</p>
-        </article>
-        <article class="method__item">
-          <div>
-            <p class="method__step">02</p>
-            <p class="method__time">Experiencia</p>
-          </div>
-          <div class="method__body"><h3 class="method__title">Mínimo tres años dando clase</h3></div>
-          <p class="method__text">En aula real, con adolescentes. Dar clases particulares sueltas en la universidad no cuenta como experiencia para nosotros.</p>
-        </article>
-        <article class="method__item">
-          <div>
-            <p class="method__step">03</p>
-            <p class="method__time">Prueba práctica</p>
-          </div>
-          <div class="method__body"><h3 class="method__title">Explicar algo que el alumno ya ha suspendido</h3></div>
-          <p class="method__text">Se le da un ejercicio con el error típico de un alumno de 3.º de ESO y tiene que explicarlo de dos formas distintas. Quien sólo sabe repetir el procedimiento se queda fuera aquí.</p>
-        </article>
-      </div>
+      <div class="accordion" data-render="faqs" data-limit="5"></div>
     </div>
   </section>
 
   <section class="section section--ink on-ink">
     <div class="wrap closer">
       <div>
-        <h2 class="closer__title">¿Con quién encajaría mejor?</h2>
-        <p class="lead mt-5">En la valoración inicial asignamos profesor según la asignatura y el tipo de dificultad. Si no funciona, se cambia sin dar explicaciones incómodas.</p>
+        <h2 class="closer__title">El precio definitivo sale de la valoración.</h2>
+        <p class="lead mt-5">Son 45 minutos, no cuestan nada y terminan con un plan por escrito en el que verás cuántas sesiones hacen falta de verdad. A veces son menos de las que la familia esperaba.</p>
       </div>
       <div class="closer__actions">
-        <a class="btn btn--lg" href="contacto.html">Pedir valoración</a>
-        <a class="btn btn--ghost btn--lg" data-link="wa" data-wa-intro="Me gustaría saber qué profesor encajaría mejor en nuestro caso." href="#">WhatsApp</a>
+        <a class="btn btn--lg" href="contacto.html">Pedir la valoración</a>
+        <a class="btn btn--ghost btn--lg" href="herramientas.html#plazas">Ver plazas libres</a>
       </div>
     </div>
   </section>

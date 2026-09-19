@@ -382,7 +382,7 @@ const ACADEMY = {
   faqs: [
     {
       q: '¿Cuánto cuesta el refuerzo al mes?',
-      a: 'Depende del curso, de la modalidad y de cuántos días a la semana venga el alumno. Un grupo reducido de ESO de dos tardes de 90 minutos ronda los 140–160 € al mes; una tarde de 60 minutos, 95–105 €; y una clase individual semanal de una hora, 110–125 €. En la web hay una calculadora que da la horquilla exacta antes de escribirnos.'
+      a: 'Depende del curso, de la modalidad y de cuántos días a la semana venga el alumno. Un grupo reducido de ESO de dos tardes de 90 minutos ronda los 140–160 € al mes; dos tardes de 60 minutos, 95–105 €; y una clase individual semanal de una hora, 110–125 €. En la web hay una calculadora que da la horquilla exacta antes de escribirnos.'
     },
     {
       q: '¿Hay que pagar matrícula o firmar permanencia?',
