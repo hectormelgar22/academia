@@ -629,6 +629,12 @@ valores: `--paper`, `--navy`, `--blue` y `--amber`.
   el mensaje generado.
 - **Imágenes:** todas cargan, ninguna se repite dentro de la misma página, todas
   declaran medidas y todas se sirven en WebP con `srcset`.
+- **Peso por página:** la portada son 21 peticiones y ~640 KB sin comprimir, más
+  el vídeo (717 KB, que se descarga aparte y sólo cuando procede). Una guía de
+  recursos son 9 peticiones y ~212 KB. El DOM está listo en menos de 120 ms.
+  Lo más pesado después de las fotos son las tres fuentes de Google (~180 KB):
+  si hiciera falta apurar, ahí está el siguiente recorte, autoalojándolas y
+  subconjuntando los caracteres latinos.
 - **Herramientas:** valores límite en la calculadora por criterios (objetivo
   inalcanzable, nota ya asegurada, pesos que no suman 100 %, todo evaluado, un
   único criterio pendiente), en el plan de examen (2 y 60 días) y en el
